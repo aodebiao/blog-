@@ -1,30 +1,23 @@
 package main
 
 import (
-	ent "aodebiao/ent"
+	"aodebiao/ent"
+	"aodebiao/model"
 	"context"
-	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"log"
 	"time"
 )
 
 func main() {
-	client, err := ent.Open("mysql", "root:1460088689@tcp(localhost:3306)/aodebiao?parseTime=True")
-	if err != nil {
-		log.Fatalf("failed opening connection to mysql: %v", err)
-	}
-	defer client.Close()
-	// Run the auto migration tool.
-	if err := client.Schema.Create(context.Background()); err != nil {
-		log.Fatalf("failed creating schema resources: %v", err)
-	}
-	//CreateUser(context.TODO(), client)
+	model.InitDb()
+	defer model.Client.Close()
 
-	fmt.Print(time.Now())
+	CreateUser(context.TODO(),model.Client)
 }
 func CreateUser(ctx context.Context, client *ent.Client) (*ent.User, error) {
-	user, err := client.User.Create().SetCreateAt(time.Now()).SetAvatarURL("1231").SetUserName("loocc").SetPassword("1231").SetDelFlag(1).SetID("12313").Save(ctx)
+	//user, err := client.User.Create().SetCreateAt(time.Now()).SetAvatarURL("aodebiao").SetUserName("aodebiao").SetPassword("aodebiao").SetDelFlag(1).SetID("adadasd").Save(ctx)
+	user, err := client.User.Create().SetCreatedAt(time.Now()).SetAvatarURL("aodebiao1").SetUserName("aodebiao1").SetPassword("aodebiao1").SetDelFlag(int(1)).SetID("1231").Save(ctx)
 	if err != nil {
 		log.Fatalf("failed creating user :%v ", err)
 	}

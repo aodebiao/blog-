@@ -1,0 +1,7 @@
+db:
+  host: localhost
+  type: mysql
+  userName: root
+  port: 3306
+  password: 1460088689
+  name: aodebiao # 数据库名
