@@ -8,7 +8,7 @@ import (
 )
 
 func init()  {
-	
+
 }
 func Open() (*ent.Client, error) {
 	db, err := sql.Open("mysql", "<mysql-dsn>")
