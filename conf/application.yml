@@ -5,3 +5,7 @@ db:
   port: 3306
   password: 1460088689
   name: aodebiao # 数据库名
+
+log:
+  path: ""
+  level: 1

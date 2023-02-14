@@ -3,11 +3,12 @@ package model
 import (
 	"aodebiao/conf"
 	"aodebiao/ent"
+	"aodebiao/log"
 	"context"
 	"database/sql"
 	entsql "entgo.io/ent/dialect/sql"
-
 	"fmt"
+	"go.uber.org/zap"
 	"time"
 )
 
@@ -29,9 +30,9 @@ func InitDb() (*ent.Client, error) {
 	Client = ent.NewClient(ent.Driver(drv))
 	// 根据scheme自动建表
 	if err := Client.Schema.Create(context.TODO());err != nil {
-		fmt.Println(err)
+		log.Error("数据库连接失败",zap.Error(err))
 		panic(err)
 	}
-	fmt.Println("client ",Client)
+	log.Info("client 初始化成功！")
 	return Client, nil
 }

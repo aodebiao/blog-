@@ -1,0 +1,2 @@
+{"level":"INFO","time":"2023-02-14 17:40:14","msg":"client 初始化成功！"}
+{"level":"ERROR","time":"2023-02-14 17:40:14","msg":"创建用户失败","error":"ent: constraint failed: Error 1062 (23000): Duplicate entry '1231' for key 'user.PRIMARY'"}

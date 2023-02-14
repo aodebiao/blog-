@@ -1,7 +1,6 @@
 package conf
 
 import (
-	"fmt"
 	"gopkg.in/yaml.v3"
 	"os"
 	"path"
@@ -16,13 +15,13 @@ func init()  {
 		panic(err)
 	}
 	yaml.Unmarshal(file,&Setting)
-	fmt.Print("settings",Setting)
 }
 
 
 var Setting Settings
 type  Settings struct {
 	Db DB `yaml:"db"`
+	Log Log `yaml:"log"`
 }
 
 type DB struct {
@@ -32,4 +31,9 @@ type DB struct {
 	UserName string `yaml:"userName"`
 	Password string `yaml:"password"`
 	Name string `yaml:"name"`
+}
+
+type Log struct {
+	Level int8 `yaml:"level"`
+	Path string `yaml:"path"`
 }
